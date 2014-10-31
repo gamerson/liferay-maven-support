@@ -21,16 +21,12 @@ import com.liferay.maven.plugins.util.SAXReaderUtil;
 import com.liferay.maven.plugins.util.Validator;
 
 import java.io.File;
-
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-
 import java.net.URI;
 import java.net.URL;
 import java.net.URLClassLoader;
-
 import java.security.Permission;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -47,10 +43,8 @@ import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.project.MavenProject;
 import org.apache.maven.project.MavenProjectBuilder;
-
 import org.codehaus.plexus.archiver.UnArchiver;
 import org.codehaus.plexus.archiver.manager.ArchiverManager;
-
 import org.xml.sax.EntityResolver;
 
 /**
@@ -120,7 +114,7 @@ public abstract class AbstractLiferayMojo extends AbstractMojo {
 
 			if (Validator.isNotNull(scope) &&
 				(scope.equalsIgnoreCase("provided") ||
-				 scope.equalsIgnoreCase("test"))) {
+				scope.equalsIgnoreCase("test"))) {
 
 				continue;
 			}
