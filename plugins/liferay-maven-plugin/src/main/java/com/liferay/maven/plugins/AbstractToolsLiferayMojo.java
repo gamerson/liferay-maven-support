@@ -567,6 +567,12 @@ public abstract class AbstractToolsLiferayMojo extends AbstractLiferayMojo {
 	}
 
 	protected MavenProject resolveProject(Artifact artifact) throws Exception {
+		for (MavenProject mavenProject : this.reactor) {
+			if (mavenProject.getArtifact().equals(artifact)) {
+				return mavenProject;
+			}
+		}
+
 		Artifact pomArtifact = artifact;
 
 		String type = artifact.getType();
@@ -663,6 +669,13 @@ public abstract class AbstractToolsLiferayMojo extends AbstractLiferayMojo {
 	 * @readonly
 	 */
 	protected ProjectBuilder projectBuilder;
+
+	/**
+	 * @parameter expression="${reactorProjects}"
+	 * @readonly
+	 * @required
+	 */
+	private List<MavenProject> reactor;
 
 	/**
 	 * @parameter expression="${project.remoteArtifactRepositories}"
