@@ -62,6 +62,7 @@ public class DBBuilderMojo extends AbstractToolsLiferayMojo {
 		args[0] = "db.database.name=" + databaseName;
 		args[1] = "db.database.types=" + databaseTypes;
 		args[2] = "db.sql.dir=" + sqlDir;
+		args[3] = "throw.exceptions=true";
 
 		executeTool(
 			"com.liferay.portal.tools.DBBuilder", getProjectClassLoader(),

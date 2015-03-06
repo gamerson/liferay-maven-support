@@ -19,10 +19,8 @@ import com.liferay.maven.plugins.util.StringUtil;
 import com.liferay.maven.plugins.util.Validator;
 
 import java.io.File;
-
 import java.net.URI;
 import java.net.URL;
-
 import java.util.List;
 
 import org.apache.maven.plugin.MojoExecutionException;
@@ -116,7 +114,7 @@ public class ServiceBuilderMojo extends AbstractToolsLiferayMojo {
 			}
 		}
 
-		String[] args = new String[28];
+		String[] args = new String[29];
 
 		args[0] = "service.input.file=" + serviceFileName;
 		args[1] = "service.hbm.file=" + hbmFileName;
@@ -155,6 +153,7 @@ public class ServiceBuilderMojo extends AbstractToolsLiferayMojo {
 		args[26] = "service.build.number=" + serviceBuildNumber;
 		args[27] =
 			"service.build.number.increment=" + serviceBuildNumberIncrement;
+		args[28] = "throw.exceptions=true";
 
 		executeTool(
 			"com.liferay.portal.tools.servicebuilder.ServiceBuilder",

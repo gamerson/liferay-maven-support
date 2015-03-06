@@ -29,12 +29,13 @@ public class LangBuilderMojo extends AbstractToolsLiferayMojo {
 			return;
 		}
 
-		String[] args = new String[4];
+		String[] args = new String[5];
 
 		args[0] = "lang.dir=" + langDir;
 		args[1] = "lang.file=" + langFile;
 		args[2] = "lang.plugin=" + langPlugin;
 		args[3] = "lang.translate=" + langTranslate;
+		args[4] = "throw.exceptions=true";
 
 		executeTool(
 			"com.liferay.portal.tools.LangBuilder", getToolsClassLoader(),

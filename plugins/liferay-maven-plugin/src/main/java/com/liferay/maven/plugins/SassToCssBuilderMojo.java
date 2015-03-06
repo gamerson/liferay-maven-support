@@ -19,6 +19,7 @@ import com.liferay.maven.plugins.util.Validator;
 
 import java.io.File;
 import java.io.FileFilter;
+import java.util.Arrays;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.filefilter.DirectoryFileFilter;
@@ -55,11 +56,12 @@ public class SassToCssBuilderMojo extends AbstractToolsLiferayMojo {
 				args = new String[dirNames.length];
 			}
 			else {
-				args = new String[dirNames.length + 2];
+				args = new String[dirNames.length + 3];
 
 				args[dirNames.length] = "sass.docroot.dir=" + sassDocrootDir;
 				args[dirNames.length + 1] =
 					"sass.portal.common.dir=" + sassPortalCommonDir;
+				args[dirNames.length + 2] = "throw.exceptions=true";
 			}
 
 			for (int i = 0; i < dirNames.length; i++) {
@@ -86,6 +88,9 @@ public class SassToCssBuilderMojo extends AbstractToolsLiferayMojo {
 				};
 			}
 		}
+
+		args = Arrays.copyOf(args, args.length + 1);
+		args[args.length - 1] = "throw.exceptions=true";
 
 		executeTool(
 			"com.liferay.portal.tools.SassToCssBuilder",

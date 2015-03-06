@@ -24,13 +24,14 @@ import java.io.File;
 public class ThumbnailBuilderMojo extends AbstractToolsLiferayMojo {
 
 	protected void doExecute() throws Exception {
-		String[] args = new String[5];
+		String[] args = new String[6];
 
 		args[0] = "thumbnail.original.file=" + originalFile.getAbsolutePath();
 		args[1] = "thumbnail.thumbnail.file=" + thumbnailFile.getAbsolutePath();
 		args[2] = "thumbnail.height=" + height;
 		args[3] = "thumbnail.width=" + width;
 		args[4] = "thumbnail.overwrite=" + overwrite;
+		args[5] = "throw.exceptions=true";
 
 		executeTool(
 			"com.liferay.portal.tools.ThumbnailBuilder", getToolsClassLoader(),

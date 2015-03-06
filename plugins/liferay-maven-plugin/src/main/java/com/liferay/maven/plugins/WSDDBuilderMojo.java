@@ -29,12 +29,13 @@ public class WSDDBuilderMojo extends AbstractToolsLiferayMojo {
 			return;
 		}
 
-		String[] args = new String[4];
+		String[] args = new String[5];
 
 		args[0] = "wsdd.input.file=" + serviceFileName;
 		args[1] = "wsdd.output.path=" + resourcesDir + "/";
 		args[2] = "wsdd.server.config.file=" + serverConfigFileName;
 		args[3] = "wsdd.service.namespace=" + serviceNamespace;
+		args[4] = "throw.exceptions=true";
 
 		executeTool(
 			"com.liferay.portal.tools.WSDDBuilder", getProjectClassLoader(),
