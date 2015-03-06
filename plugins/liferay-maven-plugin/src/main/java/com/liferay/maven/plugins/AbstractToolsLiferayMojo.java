@@ -43,7 +43,9 @@ import org.apache.maven.artifact.factory.ArtifactFactory;
 import org.apache.maven.artifact.handler.ArtifactHandler;
 import org.apache.maven.artifact.repository.ArtifactRepository;
 import org.apache.maven.artifact.resolver.ArtifactResolver;
+import org.apache.maven.execution.MavenSession;
 import org.apache.maven.model.Dependency;
+import org.apache.maven.model.Profile;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.project.DefaultProjectBuildingRequest;
 import org.apache.maven.project.MavenProject;
@@ -567,11 +569,11 @@ public abstract class AbstractToolsLiferayMojo extends AbstractLiferayMojo {
 	}
 
 	protected MavenProject resolveProject(Artifact artifact) throws Exception {
-		for (MavenProject mavenProject : this.reactor) {
-			if (mavenProject.getArtifact().equals(artifact)) {
-				return mavenProject;
-			}
-		}
+		//for (MavenProject mavenProject : this.reactor) {
+			//if (mavenProject.getArtifact().equals(artifact)) {
+				//return mavenProject;
+			//}
+		//}
 
 		Artifact pomArtifact = artifact;
 
@@ -589,9 +591,19 @@ public abstract class AbstractToolsLiferayMojo extends AbstractLiferayMojo {
 		projectBuildingRequest.setLocalRepository(localArtifactRepository);
 		projectBuildingRequest.setRemoteRepositories(
 			remoteArtifactRepositories);
+		projectBuildingRequest.setRepositorySession(session.getRepositorySession());
+
+		List<String> activeProfileIds = new ArrayList<String>();
+
+		for(Profile activeProfile : this.project.getActiveProfiles()) {
+			activeProfileIds.add(activeProfile.getId());
+		}
+
+		projectBuildingRequest.setProfiles(this.project.getActiveProfiles());
+		projectBuildingRequest.setActiveProfileIds(activeProfileIds);
 
 		ProjectBuildingResult projectBuildingResult = projectBuilder.build(
-			pomArtifact, projectBuildingRequest);
+			pomArtifact, true, projectBuildingRequest);
 
 		return projectBuildingResult.getProject();
 	}
@@ -670,12 +682,12 @@ public abstract class AbstractToolsLiferayMojo extends AbstractLiferayMojo {
 	 */
 	protected ProjectBuilder projectBuilder;
 
-	/**
-	 * @parameter expression="${reactorProjects}"
-	 * @readonly
-	 * @required
-	 */
-	private List<MavenProject> reactor;
+//	/**
+//	 * @parameter expression="${reactorProjects}"
+//	 * @readonly
+//	 * @required
+//	 */
+//	private List<MavenProject> reactor;
 
 	/**
 	 * @parameter expression="${project.remoteArtifactRepositories}"
@@ -683,6 +695,13 @@ public abstract class AbstractToolsLiferayMojo extends AbstractLiferayMojo {
 	 * @required
 	 */
 	protected List remoteArtifactRepositories;
+
+	/**
+	 * @parameter expression="${session}"
+	 * @readonly
+	 * @required
+	 */
+	private MavenSession session;
 
 	/**
 	 * @parameter default-value="${project.build.directory}/liferay-work"
