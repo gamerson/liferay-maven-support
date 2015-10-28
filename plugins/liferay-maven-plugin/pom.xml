@@ -22,6 +22,11 @@
 					<goalPrefix>liferay</goalPrefix>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>com.liferay</groupId>
+				<artifactId>com.liferay.source.formatter</artifactId>
+				<version>1.0.78</version>
+			</plugin>
 		</plugins>
 		<testResources>
 			<testResource>
