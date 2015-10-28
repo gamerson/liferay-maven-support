@@ -19,6 +19,13 @@
 				<groupId>com.liferay.maven.plugins</groupId>
 				<artifactId>liferay-maven-plugin</artifactId>
 				<version>${liferay.maven.plugin.version}</version>
+				<dependencies>
+					<dependency>
+						<groupId>com.liferay</groupId>
+						<artifactId>com.liferay.portal.tools.service.builder</artifactId>
+						<version>1.0.48</version>						
+					</dependency>
+				</dependencies>
 				<configuration>
 					<apiBaseDir>${project.build.testOutputDirectory}/projects/servicebuilder/testProject/testProject-portlet-service</apiBaseDir>
 				</configuration>
